@@ -6,9 +6,9 @@
 
 * [Movement & Pathfinding](https://gebakx.github.io/mv-games/)
 
-* [Decision Making](https://gebakx.github.io/dm-games/)
+* [World Interfacing & Knowledge](perception/index.html)
 
-* Perception & World Knowledge
+* [Decision Making](https://gebakx.github.io/dm-games/)
 
 * [Machine Learning](https://gebakx.github.io/ml-games/)
 
@@ -16,6 +16,8 @@
 
 * Strategy & Tactics
 
-<!-- * Designing Game AI ?? -->
-
-<!-- * Advanced Movement ?? -->
+<!-- 
+* Designing Game AI ?? 
+* Advanced Movement ?? 
+* Exercicis i/o examens
+-->
