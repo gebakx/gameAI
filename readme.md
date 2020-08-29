@@ -12,7 +12,7 @@
 
 * [Machine Learning](https://gebakx.github.io/ml-games/)
 
-* Optimization
+* [Optimization](optimization/index.html)
 
 * Strategy & Tactics
 
