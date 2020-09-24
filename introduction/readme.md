@@ -211,17 +211,17 @@ class: left, middle, inverse
 .col1[
 #### .blue[1st assignment]
 - Counts as 20%
-- October 18th at 23:59
+- November 1st at 23:59
 - Movement: steerings & pathfinding
 
 #### .blue[2nd assignment]
 - Counts as 20%
-- November 22th at 23:59
+- December 8th at 23:59
 - Behaviour: Behaviour Trees
 
 #### .blue[3rd assignment]
 - Counts as 25%
-- December 22th at 23:59
+- January 10th at 23:59
 - Machine Learning
 ]
 .col2[
@@ -234,7 +234,7 @@ class: left, middle, inverse
 
 #### .blue[Final exam (theory)]
 - Counts as 25%
-- January 8th - 17th
+- January
 
 #### .blue[Revaluation exam (Theory)]
 - Counts as 25%
