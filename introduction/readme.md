@@ -229,9 +229,8 @@ class: left, middle, inverse
 
 - Work is in **teams of 2**
 
-#### .blue[Innovation]
+#### .blue[Participation and learning attitude]
 - Counts as 10%
-- From 3 assignments
 
 #### .blue[Final exam (theory)]
 - Counts as 25%
