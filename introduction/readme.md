@@ -210,17 +210,17 @@ class: left, middle, inverse
 .cols5050[
 .col1[
 #### .blue[1st assignment]
-- Counts as 15%
+- Counts as 20%
 - October 18th at 23:59
 - Movement: steerings & pathfinding
 
 #### .blue[2nd assignment]
-- Counts as 15%
+- Counts as 20%
 - November 22th at 23:59
 - Behaviour: Behaviour Trees
 
 #### .blue[3rd assignment]
-- Counts as 20%
+- Counts as 25%
 - December 22th at 23:59
 - Machine Learning
 ]
@@ -234,11 +234,11 @@ class: left, middle, inverse
 - From 3 assignments
 
 #### .blue[Final exam (theory)]
-- Counts as 40%
+- Counts as 25%
 - January 8th - 17th
 
 #### .blue[Revaluation exam (Theory)]
-- Counts as 40%
+- Counts as 25%
 - Max grade is 5
 - January 30th - February 5th
 ]]
