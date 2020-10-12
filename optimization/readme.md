@@ -240,6 +240,21 @@ class: left, middle, inverse
 - [github](https://github.com/Sebastian-Schuchmann/Genetic-Algorithm-in-Unity3D)
 
 ---
+
+# Training Neural Networks
+
+with backpropagation and evolution based learning in Unity:
+
+.center[![:scale 65%](figures/cars.gif)]
+
+- [Building a neural network framework in C#](https://towardsdatascience.com/building-a-neural-network-framework-in-c-16ef56ce1fef)
+
+- [Mutation Project on Github](https://github.com/kipsterbro/MutationNetwork).
+
+- [Backpropagation Project on Github](https://github.com/kipsterbro/BackPropNetwork).
+
+
+---
 class: left, middle, inverse
 
 # Outline
@@ -260,5 +275,7 @@ class: left, middle, inverse
 - Rafael Matsunaga. [Genetic Cars](https://rednuht.org/genetic_cars_2/), [github](https://github.com/red42/HTML5_Genetic_Cars). 
 
 - Sebastian-Schuchmann. [Genetic Algorithm in Unity](https://github.com/Sebastian-Schuchmann/Genetic-Algorithm-in-Unity3D).
+
+- Kip Parker. [Building a neural network framework in C#](https://towardsdatascience.com/building-a-neural-network-framework-in-c-16ef56ce1fef).
 
 
