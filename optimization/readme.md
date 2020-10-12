@@ -10,22 +10,28 @@ Gerard Escudero & Samir Kanaan, 2019
 
 <br>
 
-![:scale 50%](figures/inverse.png)
+![:scale 50%](figures/evolution.png)
 
-.footnote[Source: [inverse](https://www.inverse.com/article/31467-artificial-intelligence-computer-human-game) ]
+.footnote[[source](https://www.biologyonline.com/tutorials/genetics-and-evolution) ]
 
 ---
 class: left, middle, inverse
 
 # Outline
 
-* .cyan[Genetic Algorithms]
+* .cyan[The Problem]
+
+* Gradient Descent
+
+* Genetic Algorithms
+
+* Examples
 
 * References
 
 ---
 
-# Optimisation I
+# The Problem
 
 - **Problem**: setting parameters
 
@@ -47,15 +53,13 @@ class: left, middle, inverse
 
     - Setting parameters of a Machine Learning algorithm
 
-- Example 4:
-
-    - Learning behaviour
-
 ---
 
-# Optimisation II
+# Example
 
-- Exemple: Strategy Game
+.cols5050[
+.col1[
+- **Problem**: Strategy Game
 
   - 10 unit types
 
@@ -65,13 +69,96 @@ class: left, middle, inverse
 
   - possible combinations will be $20^{3\times 10}$
 
-  - testing all combinations is impossible
-
+  - .blue[testing all combinations is impossible]
+]
+.col2[
 - **Solution**: 
 
   - Find a _reasonably_ good solution in a limited time
 
   - .blue[Optimisation algorithms]
+
+- .blue[The Curse of Dimensionality]
+.center[
+![:scale 90%](figures/dimensionality.png)
+[source](https://www.freecodecamp.org/news/the-curse-of-dimensionality-how-we-can-save-big-data-from-itself-d9fa0f872335/)]
+
+]]
+
+---
+
+# The Problem in Optimization
+
+.center[
+![:scale 80%](figures/global.png)<br>
+[source](https://www.datasciencecentral.com/profiles/blogs/optimization-techniques-finding-maxima-and-minima)
+]
+
+- .blue[Objective function]: many minima/maxima
+
+- Simplest methods get stuck in local minima
+
+---
+class: left, middle, inverse
+
+# Outline
+
+* .brown[The Problem]
+
+* .cyan[Gradient Descent]
+
+* Genetic Algorithms
+
+* Examples
+
+* References
+
+---
+
+# Gradient Descent
+
+.center[
+![:scale 80%](figures/gradientDescent.png)<br>
+[source](https://dzone.com/articles/gradient-descent-algorithm)
+]
+
+- Methafor: going down a mountain to the lowest point.
+
+- Gradient (partial derivatives) gives the direction of steepest descent
+
+---
+
+# Hyperparameter: Step Size
+
+.blue[Step size (η)]: factor to the gradient (arrow length)
+
+- Too small: progress will be sloooooow
+
+- Too big: it may jump over minima or go back and forth
+
+- Can be adaptive (decrease with iterations)
+
+.center[
+![:scale 70%](figures/stepSize.png)<br>
+[source](https://srdas.github.io/DLBook/GradientDescentTechniques.html)
+]
+
+
+
+---
+class: left, middle, inverse
+
+# Outline
+
+* .brown[The Problem]
+
+* .brown[Gradient Descent]
+
+* .cyan[Genetic Algorithms]
+
+* Examples
+
+* References
 
 ---
 
@@ -103,8 +190,6 @@ Given a problem $P$ with a solution space $S$, the main components are:
 
 .center[![:scale 50%](figures/mutation.png)]
 
-.cols5050[
-.col1[
 **Algorithm:**
 
 ```
@@ -115,21 +200,65 @@ Given a problem $P$ with a solution space $S$, the main components are:
 5. Mutation
 6. Go to step 2
 ```
+---
 
-- Example: [demo](figures/maze.mp4) / [reference](https://github.com/Sebastian-Schuchmann/Genetic-Algorithm-in-Unity3D)
-]
-.col2[
-![:scale 75%](figures/ga-plot.png)
-]]
+# Behavior
 
+.center[![:scale 85%](figures/behavior.png)]
 
 ---
 class: left, middle, inverse
 
 # Outline
 
+* .brown[The Problem]
+
 * .brown[Genetic Algorithms]
 
+* .cyan[Examples]
+
+* References
+
+---
+
+# Live Demo!
+
+.blue[HTML_Genetic_Cars] in js:
+
+.center[[![:scale 85%](figures/demo.png)](https://rednuht.org/genetic_cars_2/)]
+
+- [web](https://rednuht.org/genetic_cars_2/) / [github](https://github.com/red42/HTML5_Genetic_Cars)
+
+---
+
+# Maze
+
+.blue[Genetic Algorithm in Unity]:
+
+.center[[![:scale 65%](figures/maze.png)](figures/maze.mp4)]
+
+- [github](https://github.com/Sebastian-Schuchmann/Genetic-Algorithm-in-Unity3D)
+
+---
+class: left, middle, inverse
+
+# Outline
+
+* .brown[The Problem]
+
+* .brown[Genetic Algorithms]
+
+* .brown[Examples]
+
 * .cyan[References]
+---
+
+# References
+
+- Ian Millington. _AI for Games_ (3rd edition). CRC Press, 2019.
+
+- Rafael Matsunaga. [Genetic Cars](https://rednuht.org/genetic_cars_2/), [github](https://github.com/red42/HTML5_Genetic_Cars). 
+
+- Sebastian-Schuchmann. [Genetic Algorithm in Unity](https://github.com/Sebastian-Schuchmann/Genetic-Algorithm-in-Unity3D).
 
 
