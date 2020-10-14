@@ -278,4 +278,7 @@ class: left, middle, inverse
 
 - Kip Parker. [Building a neural network framework in C#](https://towardsdatascience.com/building-a-neural-network-framework-in-c-16ef56ce1fef).
 
+- Viktor Seč. [Karl Sims - Evolving Virtual Creatures With Genetic Algorithms](https://www.youtube.com/watch?v=bBt0imn77Zg). 1994.
+
+- Thomas Geijtenbeek. [Flexible Muscle-Based Locomotion for Bipedal Creatures](https://www.youtube.com/watch?v=pgaEE27nsQw). 2013.
 

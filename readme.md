@@ -14,7 +14,7 @@
 
 * [Optimization](optimization/index.html)
 
-* Strategy & Tactics
+* [Strategy & Tactics](tactics/index.html)
 
 <!-- 
 * Designing Game AI ?? 
