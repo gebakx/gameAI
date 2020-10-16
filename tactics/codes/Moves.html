@@ -1,0 +1,61 @@
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">using</span> <span style="color: #0e84b5; font-weight: bold">UnityEngine</span>;
+<span style="color: #008800; font-weight: bold">using</span> <span style="color: #0e84b5; font-weight: bold">UnityEngine.AI</span>;
+
+<span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">Moves</span> : MonoBehaviour
+{
+    <span style="color: #008800; font-weight: bold">public</span> GameObject target;
+    <span style="color: #008800; font-weight: bold">public</span> Collider floor;
+    <span style="color: #008800; font-weight: bold">public</span> NavMeshAgent agent;
+    <span style="color: #008800; font-weight: bold">public</span> GameObject robber;
+    <span style="color: #008800; font-weight: bold">public</span> GameObject treasure;
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">bool</span> found = <span style="color: #008800; font-weight: bold">false</span>;
+
+    <span style="color: #008800; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">Start</span>()
+    {
+        Wander();
+    }
+
+    <span style="color: #008800; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">Update</span>()
+    {
+        <span style="color: #008800; font-weight: bold">if</span> (found)
+            agent.destination = target.transform.position;
+        <span style="color: #008800; font-weight: bold">if</span> (!found &amp;&amp; agent.remainingDistance &lt; <span style="color: #6600EE; font-weight: bold">2</span>)
+            Wander();
+    }
+
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">BBSeekRobber</span>() 
+    {
+        target = robber;
+        found = <span style="color: #008800; font-weight: bold">true</span>;
+    }
+
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">BBSeekTreasure</span>() 
+    {
+        target = treasure;
+        found = <span style="color: #008800; font-weight: bold">true</span>;
+    }
+
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">Wander</span>()
+    {
+        <span style="color: #333399; font-weight: bold">float</span> radius = <span style="color: #6600EE; font-weight: bold">5</span>;
+        <span style="color: #333399; font-weight: bold">float</span> distance = <span style="color: #6600EE; font-weight: bold">7</span>;
+
+        Vector3 target = Vector3.zero;
+
+        target += <span style="color: #008800; font-weight: bold">new</span> Vector3(Random.Range(-<span style="color: #6600EE; font-weight: bold">1.0f</span>, <span style="color: #6600EE; font-weight: bold">1.0f</span>), <span style="color: #6600EE; font-weight: bold">0</span>, Random.Range(-<span style="color: #6600EE; font-weight: bold">1.0f</span>, <span style="color: #6600EE; font-weight: bold">1.0f</span>));
+        target.Normalize();
+        target *= radius;
+
+        Vector3 targetWorld = <span style="color: #008800; font-weight: bold">this</span>.gameObject.transform.InverseTransformVector(target + 
+                                                <span style="color: #008800; font-weight: bold">new</span> <span style="color: #0066BB; font-weight: bold">Vector3</span>(<span style="color: #6600EE; font-weight: bold">0</span>, <span style="color: #6600EE; font-weight: bold">0</span>, distance));
+
+        <span style="color: #008800; font-weight: bold">if</span> (!floor.bounds.Contains(targetWorld))
+        {
+            targetWorld = -transform.position * <span style="color: #6600EE; font-weight: bold">0.1f</span>;
+        };
+
+        agent.destination = targetWorld;
+    }
+}
+</pre></div>
+

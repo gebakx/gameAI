@@ -1,0 +1,37 @@
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">using</span> <span style="color: #0e84b5; font-weight: bold">UnityEngine</span>;
+
+<span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">Slots</span> : MonoBehaviour
+{
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">int</span> melee;
+    <span style="color: #008800; font-weight: bold">public</span> GameObject meleePrefab;
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">int</span> missile;
+    <span style="color: #008800; font-weight: bold">public</span> GameObject missilePrefab;
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">int</span> magic;
+    <span style="color: #008800; font-weight: bold">public</span> GameObject magicPrefab;
+    <span style="color: #008800; font-weight: bold">public</span> GameObject ghost;
+
+    <span style="color: #008800; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">Start</span>()
+    {
+        <span style="color: #333399; font-weight: bold">int</span> front = <span style="color: #6600EE; font-weight: bold">2</span> * melee / <span style="color: #6600EE; font-weight: bold">3</span>;
+        <span style="color: #333399; font-weight: bold">int</span> rear = melee - front;
+        createRow(front, -<span style="color: #6600EE; font-weight: bold">2f</span>, meleePrefab);
+        createRow(missile, -<span style="color: #6600EE; font-weight: bold">4f</span>, missilePrefab);
+        createRow(magic, -<span style="color: #6600EE; font-weight: bold">6f</span>, magicPrefab);
+        createRow(rear, -<span style="color: #6600EE; font-weight: bold">8f</span>, meleePrefab);
+    }
+
+    <span style="color: #008800; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">createRow</span>(<span style="color: #333399; font-weight: bold">int</span> num, <span style="color: #333399; font-weight: bold">float</span> z, GameObject pf)
+    {
+        <span style="color: #333399; font-weight: bold">float</span> pos = <span style="color: #6600EE; font-weight: bold">1</span> - num;
+        <span style="color: #008800; font-weight: bold">for</span> (<span style="color: #333399; font-weight: bold">int</span> i = <span style="color: #6600EE; font-weight: bold">0</span>; i &lt; num; ++i) {
+            Vector3 position = ghost.transform.TransformPoint(<span style="color: #008800; font-weight: bold">new</span> Vector3 (pos,<span style="color: #6600EE; font-weight: bold">0f</span>,z));
+            GameObject temp = (GameObject)Instantiate(pf, position, ghost.transform.rotation); 
+            temp.AddComponent&lt;Formation&gt;();
+            temp.GetComponent&lt;Formation&gt;().pos = <span style="color: #008800; font-weight: bold">new</span> Vector3 (pos,<span style="color: #6600EE; font-weight: bold">0</span>,z);
+            temp.GetComponent&lt;Formation&gt;().target = ghost;
+            pos += <span style="color: #6600EE; font-weight: bold">2f</span>;
+        }
+    }
+}
+</pre></div>
+
