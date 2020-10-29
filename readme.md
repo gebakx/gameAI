@@ -16,8 +16,10 @@
 
 * [Strategy & Tactics](tactics/index.html)
 
-<!-- 
-* Designing Game AI ?? 
-* Advanced Movement ?? 
-* Exercicis i/o examens
+* [Designing Game AI](design/index.html) 
+
+* [Rule-Based Systems](rules/index.html) 
+
+<!--
+- bezier & patrol (incloure a Movement)
 -->
