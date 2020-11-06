@@ -1,0 +1,91 @@
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">using</span> <span style="color: #0e84b5; font-weight: bold">System</span>;
+<span style="color: #008800; font-weight: bold">using</span> <span style="color: #0e84b5; font-weight: bold">System.Collections</span>;
+<span style="color: #008800; font-weight: bold">using</span> <span style="color: #0e84b5; font-weight: bold">System.Collections.Generic</span>;
+<span style="color: #008800; font-weight: bold">using</span> <span style="color: #0e84b5; font-weight: bold">UnityEngine</span>;
+<span style="color: #008800; font-weight: bold">using</span> <span style="color: #0e84b5; font-weight: bold">System.Linq</span>;
+<span style="color: #008800; font-weight: bold">using</span> <span style="color: #0e84b5; font-weight: bold">UnityEngine.AI</span>;
+
+<span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">Rules</span> : MonoBehaviour
+{
+    <span style="color: #008800; font-weight: bold">public</span> GameObject cop;
+    <span style="color: #008800; font-weight: bold">public</span> GameObject treasure;
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">float</span> dist2steal;
+    <span style="color: #008800; font-weight: bold">public</span> NavMeshAgent agent;
+
+    HashSet&lt;<span style="color: #333399; font-weight: bold">string</span>&gt; datum;
+    List&lt;(Func&lt;<span style="color: #333399; font-weight: bold">bool</span>&gt;,Action)&gt; rules;
+
+    <span style="color: #008800; font-weight: bold">private</span> WaitForSeconds wait = <span style="color: #008800; font-weight: bold">new</span> WaitForSeconds(<span style="color: #6600EE; font-weight: bold">0.25f</span>); 
+
+    <span style="color: #008800; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">Start</span>()
+    {
+        <span style="color: #888888">// datum: only bools</span>
+        datum = <span style="color: #008800; font-weight: bold">new</span> HashSet&lt;String&gt;();
+        rules = <span style="color: #008800; font-weight: bold">new</span> List&lt;(Func&lt;<span style="color: #333399; font-weight: bold">bool</span>&gt;,Action)&gt;();
+        <span style="color: #888888">// priority: order</span>
+        <span style="color: #888888">// Hiding</span>
+        rules.Add((
+            () =&gt; datum.Contains(<span style="background-color: #fff0f0">&quot;stolen&quot;</span>),
+            () =&gt; { 
+                    gameObject.SendMessage(<span style="background-color: #fff0f0">&quot;Hide&quot;</span>); 
+                  }
+            ));
+        <span style="color: #888888">// Steal    </span>
+        rules.Add((
+            () =&gt; datum.Contains(<span style="background-color: #fff0f0">&quot;approaching&quot;</span>) &amp;&amp;
+                  (Vector3.Distance(<span style="color: #008800; font-weight: bold">this</span>.transform.position, treasure.transform.position) &lt; <span style="color: #6600EE; font-weight: bold">2f</span>),
+            () =&gt; {
+                    datum.Remove(<span style="background-color: #fff0f0">&quot;approaching&quot;</span>);
+                    datum.Add(<span style="background-color: #fff0f0">&quot;stolen&quot;</span>);
+                    treasure.SetActive(<span style="color: #008800; font-weight: bold">false</span>);
+                    agent.speed = <span style="color: #6600EE; font-weight: bold">2f</span>;
+                    gameObject.SendMessage(<span style="background-color: #fff0f0">&quot;Hide&quot;</span>);
+                  }
+            ));
+        <span style="color: #888888">// goto Approaching</span>
+        rules.Add((
+            () =&gt; !datum.Contains(<span style="background-color: #fff0f0">&quot;approaching&quot;</span>) &amp;&amp; 
+                  (Vector3.Distance(cop.transform.position, treasure.transform.position) &gt;= dist2steal),
+            () =&gt; { 
+                    datum.Add(<span style="background-color: #fff0f0">&quot;approaching&quot;</span>);
+                    agent.speed = <span style="color: #6600EE; font-weight: bold">3f</span>;
+                    gameObject.SendMessage(<span style="background-color: #fff0f0">&quot;Seek&quot;</span>, treasure.transform.position); 
+                  }
+            ));
+        <span style="color: #888888">// goto Wander</span>
+        rules.Add((
+            () =&gt; datum.Contains(<span style="background-color: #fff0f0">&quot;approaching&quot;</span>) &amp;&amp; 
+                  (Vector3.Distance(cop.transform.position, treasure.transform.position) &lt; dist2steal),
+            () =&gt; { 
+                    datum.Remove(<span style="background-color: #fff0f0">&quot;approaching&quot;</span>);
+                    agent.speed = <span style="color: #6600EE; font-weight: bold">1.5f</span>;
+                    gameObject.SendMessage(<span style="background-color: #fff0f0">&quot;Wander&quot;</span>); 
+                  }
+            ));
+        <span style="color: #888888">// Wander</span>
+        rules.Add((
+            () =&gt; !datum.Contains(<span style="background-color: #fff0f0">&quot;approaching&quot;</span>) &amp;&amp; 
+                  (agent.remainingDistance &lt; <span style="color: #6600EE; font-weight: bold">0.5f</span>),
+            () =&gt; { 
+                    gameObject.SendMessage(<span style="background-color: #fff0f0">&quot;Wander&quot;</span>); 
+                  }
+            ));
+
+        <span style="color: #888888">// Start Rule-System</span>
+        StartCoroutine(inference());
+    }
+
+
+    IEnumerator <span style="color: #0066BB; font-weight: bold">inference</span>()
+    {
+        <span style="color: #008800; font-weight: bold">while</span> (<span style="color: #008800; font-weight: bold">true</span>)
+        {
+            IEnumerable&lt;(Func&lt;<span style="color: #333399; font-weight: bold">bool</span>&gt;,Action)&gt; res = rules.Where(x =&gt; x.Item1());
+            <span style="color: #008800; font-weight: bold">if</span> (res.Count() &gt; <span style="color: #6600EE; font-weight: bold">0</span>)
+                res.First().Item2();
+            <span style="color: #008800; font-weight: bold">yield</span> <span style="color: #008800; font-weight: bold">return</span> wait;
+        }
+    }
+}
+</pre></div>
+

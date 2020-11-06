@@ -1,0 +1,130 @@
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">using</span> <span style="color: #0e84b5; font-weight: bold">System</span>;
+<span style="color: #008800; font-weight: bold">using</span> <span style="color: #0e84b5; font-weight: bold">System.Linq</span>;
+<span style="color: #008800; font-weight: bold">using</span> <span style="color: #0e84b5; font-weight: bold">System.Collections.Generic</span>;
+<span style="color: #008800; font-weight: bold">using</span> <span style="color: #0e84b5; font-weight: bold">UnityEngine</span>;
+
+<span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">Fact</span>
+{
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">string</span> identifier { <span style="color: #008800; font-weight: bold">get</span>; }
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">string</span> content;
+    <span style="color: #008800; font-weight: bold">public</span> List&lt;Fact&gt; childs { <span style="color: #008800; font-weight: bold">get</span>; }
+
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #0066BB; font-weight: bold">Fact</span>(<span style="color: #333399; font-weight: bold">string</span> id, <span style="color: #333399; font-weight: bold">string</span> cnt)
+    {
+        identifier = id;
+        content = cnt;
+        childs = <span style="color: #008800; font-weight: bold">new</span> List&lt;Fact&gt;();
+    }
+
+    <span style="color: #008800; font-weight: bold">public</span> Fact <span style="color: #0066BB; font-weight: bold">child</span>(<span style="color: #333399; font-weight: bold">int</span> i)
+    {
+        <span style="color: #008800; font-weight: bold">return</span> childs[i];
+    }
+
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">addChild</span>(Fact f)
+    {
+        childs.Add(f);
+    }
+
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">bool</span> <span style="color: #0066BB; font-weight: bold">contains</span>(<span style="color: #333399; font-weight: bold">string</span> id, Func&lt;<span style="color: #333399; font-weight: bold">string</span>,<span style="color: #333399; font-weight: bold">bool</span>&gt; p)
+    {
+        <span style="color: #008800; font-weight: bold">if</span> (identifier == id)
+            <span style="color: #008800; font-weight: bold">return</span> <span style="color: #0066BB; font-weight: bold">p</span>(content);
+        <span style="color: #008800; font-weight: bold">if</span> (content == <span style="background-color: #fff0f0">&quot;&quot;</span>)
+            <span style="color: #008800; font-weight: bold">return</span> childs.Select(x =&gt; x.contains(id, p)).Aggregate((x, y) =&gt; x || y);
+        <span style="color: #008800; font-weight: bold">return</span> <span style="color: #008800; font-weight: bold">false</span>;
+    }
+
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">override</span> <span style="color: #333399; font-weight: bold">string</span> <span style="color: #0066BB; font-weight: bold">ToString</span>()
+    {
+        <span style="color: #008800; font-weight: bold">if</span> (content != <span style="background-color: #fff0f0">&quot;&quot;</span>)
+            <span style="color: #008800; font-weight: bold">return</span> <span style="background-color: #fff0f0">&quot;(&quot;</span> + identifier + <span style="background-color: #fff0f0">&quot; &quot;</span> + content + <span style="background-color: #fff0f0">&quot;)&quot;</span>;
+        <span style="color: #008800; font-weight: bold">else</span> 
+            <span style="color: #008800; font-weight: bold">return</span> <span style="background-color: #fff0f0">&quot;(&quot;</span> + identifier + <span style="background-color: #fff0f0">&quot; &quot;</span> + String.Join(<span style="background-color: #fff0f0">&quot; &quot;</span>, childs.Select(x =&gt; x.ToString())) +<span style="background-color: #fff0f0">&quot;)&quot;</span>;
+    }
+}
+
+<span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">SimpleUnification</span> : MonoBehaviour
+{
+    List&lt;Fact&gt; datum;
+    List&lt;(Func&lt;<span style="color: #333399; font-weight: bold">bool</span>&gt;,Action)&gt; rules;
+
+    <span style="color: #008800; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">Start</span>()
+    {
+        initialDatum();
+        initialRules();        
+        <span style="color: #888888">// execution</span>
+        Debug.Log(<span style="background-color: #fff0f0">&quot;Initial:\n&quot;</span> + String.Join(<span style="background-color: #fff0f0">&quot;\n&quot;</span>, datum.Select(x =&gt; x.ToString())));
+        inference();
+        <span style="color: #888888">// Whisker dies</span>
+        innerFact(<span style="background-color: #fff0f0">&quot;Whisker&quot;</span>, <span style="background-color: #fff0f0">&quot;health&quot;</span>).content = <span style="background-color: #fff0f0">&quot;0&quot;</span>;
+        Debug.Log(<span style="background-color: #fff0f0">&quot;Die:\n&quot;</span> + String.Join(<span style="background-color: #fff0f0">&quot;\n&quot;</span>, datum.Select(x =&gt; x.ToString())));
+        inference();
+        Debug.Log(<span style="background-color: #fff0f0">&quot;Radio:\n&quot;</span> + String.Join(<span style="background-color: #fff0f0">&quot;\n&quot;</span>, datum.Select(x =&gt; x.ToString())));        
+    }
+
+    <span style="color: #008800; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">inference</span>()
+    {
+        IEnumerable&lt;(Func&lt;<span style="color: #333399; font-weight: bold">bool</span>&gt;,Action)&gt; res = rules.Where(x =&gt; x.Item1());
+<span style="color: #888888">//        Debug.Log(&quot;Rules: &quot; + res.Count().ToString());</span>
+        <span style="color: #008800; font-weight: bold">if</span> (res.Count() &gt; <span style="color: #6600EE; font-weight: bold">0</span>)
+            res.First().Item2();
+    }
+
+    Fact <span style="color: #0066BB; font-weight: bold">innerFact</span>(<span style="color: #333399; font-weight: bold">string</span> id, <span style="color: #333399; font-weight: bold">string</span> cnt)
+    {
+        <span style="color: #008800; font-weight: bold">return</span> datum.Where(
+            x =&gt; x.identifier == id).First().childs.Where(
+                x =&gt; x.identifier == cnt).First();
+    }
+
+    HashSet&lt;<span style="color: #333399; font-weight: bold">string</span>&gt; outerList(<span style="color: #333399; font-weight: bold">string</span> id, Func&lt;<span style="color: #333399; font-weight: bold">string</span>,<span style="color: #333399; font-weight: bold">bool</span>&gt; f)
+    {
+        <span style="color: #008800; font-weight: bold">return</span> <span style="color: #008800; font-weight: bold">new</span> HashSet&lt;<span style="color: #333399; font-weight: bold">string</span>&gt;(datum.Where(x =&gt; x.contains(id,f)).Select(x =&gt; x.identifier));
+    }
+
+    <span style="color: #008800; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">initialDatum</span>()
+    {
+        <span style="color: #888888">/*</span>
+<span style="color: #888888">        (Johnson (health 38))</span>
+<span style="color: #888888">        (Sale (health 15))</span>
+<span style="color: #888888">        (Whisker (health 25))</span>
+<span style="color: #888888">        (Radio (held-by Whisker))</span>
+<span style="color: #888888">        */</span>
+        datum = <span style="color: #008800; font-weight: bold">new</span> List&lt;Fact&gt;();
+        Fact f = <span style="color: #008800; font-weight: bold">new</span> Fact(<span style="background-color: #fff0f0">&quot;Johnson&quot;</span>, <span style="background-color: #fff0f0">&quot;&quot;</span>);
+        f.addChild(<span style="color: #008800; font-weight: bold">new</span> Fact(<span style="background-color: #fff0f0">&quot;health&quot;</span>, <span style="background-color: #fff0f0">&quot;38&quot;</span>));
+        f.addChild(<span style="color: #008800; font-weight: bold">new</span> Fact(<span style="background-color: #fff0f0">&quot;ammo&quot;</span>, <span style="background-color: #fff0f0">&quot;127&quot;</span>));
+        datum.Add(f);
+        f = <span style="color: #008800; font-weight: bold">new</span> Fact(<span style="background-color: #fff0f0">&quot;Sale&quot;</span>, <span style="background-color: #fff0f0">&quot;&quot;</span>);
+        f.addChild(<span style="color: #008800; font-weight: bold">new</span> Fact(<span style="background-color: #fff0f0">&quot;health&quot;</span>, <span style="background-color: #fff0f0">&quot;10&quot;</span>));
+        f.addChild(<span style="color: #008800; font-weight: bold">new</span> Fact(<span style="background-color: #fff0f0">&quot;ammo&quot;</span>, <span style="background-color: #fff0f0">&quot;89&quot;</span>));
+        datum.Add(f);
+        f = <span style="color: #008800; font-weight: bold">new</span> Fact(<span style="background-color: #fff0f0">&quot;Whisker&quot;</span>, <span style="background-color: #fff0f0">&quot;&quot;</span>);
+        f.addChild(<span style="color: #008800; font-weight: bold">new</span> Fact(<span style="background-color: #fff0f0">&quot;health&quot;</span>, <span style="background-color: #fff0f0">&quot;25&quot;</span>));
+        f.addChild(<span style="color: #008800; font-weight: bold">new</span> Fact(<span style="background-color: #fff0f0">&quot;ammo&quot;</span>, <span style="background-color: #fff0f0">&quot;72&quot;</span>));
+        datum.Add(f);
+        f = <span style="color: #008800; font-weight: bold">new</span> Fact(<span style="background-color: #fff0f0">&quot;Radio&quot;</span>, <span style="background-color: #fff0f0">&quot;&quot;</span>);
+        f.addChild(<span style="color: #008800; font-weight: bold">new</span> Fact(<span style="background-color: #fff0f0">&quot;held-by&quot;</span>, <span style="background-color: #fff0f0">&quot;Whisker&quot;</span>));
+        datum.Add(f);
+    }
+
+    <span style="color: #008800; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">initialRules</span>()
+    {
+        rules = <span style="color: #008800; font-weight: bold">new</span> List&lt;(Func&lt;<span style="color: #333399; font-weight: bold">bool</span>&gt;,Action)&gt;();
+        <span style="color: #888888">/*</span>
+<span style="color: #888888">        (?person (health 0-15))</span>
+<span style="color: #888888">        AND</span>
+<span style="color: #888888">        (Radio (held-by ?person))</span>
+<span style="color: #888888">        */</span>
+        <span style="color: #888888">/* More vars =&gt; Intersection */</span>
+        rules.Add((
+            () =&gt; outerList(<span style="background-color: #fff0f0">&quot;health&quot;</span>, y =&gt; <span style="color: #333399; font-weight: bold">int</span>.Parse(y) &lt;= <span style="color: #6600EE; font-weight: bold">10</span>).Contains(innerFact(<span style="background-color: #fff0f0">&quot;Radio&quot;</span>,<span style="background-color: #fff0f0">&quot;held-by&quot;</span>).content),
+            () =&gt; { 
+                    innerFact(<span style="background-color: #fff0f0">&quot;Radio&quot;</span>, <span style="background-color: #fff0f0">&quot;held-by&quot;</span>).content = outerList(<span style="background-color: #fff0f0">&quot;health&quot;</span>, y =&gt; <span style="color: #333399; font-weight: bold">int</span>.Parse(y) &gt; <span style="color: #6600EE; font-weight: bold">15</span>).First();
+                  }
+            ));
+    }
+}
+</pre></div>
+

@@ -1,0 +1,17 @@
+Initial:
+(Johnson (health 38) (ammo 127))
+(Sale (health 10) (ammo 89))
+(Whisker (health 25) (ammo 72))
+(Radio (held-by Whisker))
+
+Die:
+(Johnson (health 38) (ammo 127))
+(Sale (health 10) (ammo 89))
+(Whisker (health 0) (ammo 72))
+(Radio (held-by Whisker))
+
+Radio:
+(Johnson (health 38) (ammo 127))
+(Sale (health 10) (ammo 89))
+(Whisker (health 0) (ammo 72))
+(Radio (held-by Johnson))
