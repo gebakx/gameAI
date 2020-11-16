@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Copyright 2017 mathsisfun.com -->
+<svg xmlns="http://www.w3.org/2000/svg" width="282.9" height="144.5" version="1.0">
+<defs>
+<marker style="overflow:visible;" orient="auto" id="id01">
+<path d="M 0,0 5,-5 -12.5,0 5,5 Z" transform="matrix(-0.4,0,0,-0.4,-4,0)" style="stroke:black; stroke-width:1pt;"/>
+</marker>
+</defs>
+<rect x="16.5" y="52.6" width="266.1" height="91.6" style="color:black; overflow:visible; fill:#ffff3e; fill-opacity:0.23; stroke:black; stroke-width:0.66;"/>
+<path d="m 173.8,100.3 c 0,21.8 -19.1,39.4 -75,39.4 -55.9,0 -75,-17.6 -75,-39.4 0,-21.8 20.2,-39.4 75,-39.4 54.9,0 75,17.6 75,39.4 z" style="color:black; overflow:visible; fill:#f1caff; fill-opacity:0.42; stroke:black; stroke-width:0.66;"/>
+<ellipse cx="225.7" cy="97.8" rx="47" ry="35.9" style="color:black; overflow:visible; fill:#ffff3e; fill-opacity:0.42; stroke:black; stroke-width:0.66;"/>
+<text x="208.1" y="32.6" style="font-family:Georgia; text-align:center; text-anchor:middle; font-size:21.3px; font-style:italic; color:black; overflow:visible; fill:#2d2d2d; stroke-width:0.5px;">Event A</text>
+<text x="226.8" y="83.8" style="font-family:Georgia; text-align:center; text-anchor:middle; font-weight:bold; font-size:21.3px; font-style:italic; color:black; overflow:visible; fill:black; stroke-width:0.5px;">A</text>
+<text x="97.7" y="83" style="font-family:Georgia; text-align:center; text-anchor:middle; font-weight:bold; font-size:21.3px; font-style:italic; color:black; overflow:visible; fill:black; stroke-width:0.5px;">A'</text>
+<text x="73.4" y="18.1" style="font-family:Georgia; text-align:center; text-anchor:middle; font-size:21.3px; font-style:italic; color:black; overflow:visible; fill:#2d2d2d; stroke-width:0.5px;">Complement of</text>
+<path d="m 58.2,43.1 8.5,27.9" style="marker-end:url(#id01); fill:none; stroke:black; stroke-width:1.98;"/>
+<path d="m 196.2,37.7 10,34" style="marker-end:url(#id01); fill:none; stroke:black; stroke-width:1.98;"/>
+<rect x="226.3" y="88.9" rx="10.6" ry="10.6" width="31.8" height="31.8" style="color:black; overflow:visible; fill:#fbf0ff; stroke:black; stroke-width:0.53;"/>
+<circle cx="234.5" cy="97.1" r="2.64698" style="color:black; overflow:visible; fill:black; stroke:black; stroke-width:0.53;"/>
+<circle cx="234.5" cy="112.3" r="2.64698" style="color:black; overflow:visible; fill:black; stroke:black; stroke-width:0.53;"/>
+<circle cx="234.5" cy="104.7" r="2.64698" style="color:black; overflow:visible; fill:black; stroke:black; stroke-width:0.53;"/>
+<circle cx="249.7" cy="97.1" r="2.64698" style="color:black; overflow:visible; fill:black; stroke:black; stroke-width:0.53;"/>
+<circle cx="249.7" cy="112.3" r="2.64698" style="color:black; overflow:visible; fill:black; stroke:black; stroke-width:0.53;"/>
+<circle cx="249.7" cy="104.7" r="2.64698" style="color:black; overflow:visible; fill:black; stroke:black; stroke-width:0.53;"/>
+<rect x="192.9" y="88.9" rx="10.6" ry="10.6" width="31.8" height="31.8" style="color:black; overflow:visible; fill:#fbf0ff; stroke:black; stroke-width:0.53;"/>
+<circle cx="201" cy="97.1" r="2.64698" style="color:black; overflow:visible; fill:black; stroke:black; stroke-width:0.53;"/>
+<circle cx="201" cy="112.3" r="2.64698" style="color:black; overflow:visible; fill:black; stroke:black; stroke-width:0.53;"/>
+<circle cx="216.3" cy="97.1" r="2.64698" style="color:black; overflow:visible; fill:black; stroke:black; stroke-width:0.53;"/>
+<circle cx="216.3" cy="112.3" r="2.64698" style="color:black; overflow:visible; fill:black; stroke:black; stroke-width:0.53;"/>
+<circle cx="208.7" cy="104.7" r="2.64698" style="color:black; overflow:visible; fill:black; stroke:black; stroke-width:0.53;"/>
+<rect x="131.7" y="88.9" rx="10.6" ry="10.6" width="31.8" height="31.8" style="color:black; overflow:visible; fill:#fbf0ff; stroke:black; stroke-width:0.53;"/>
+<circle cx="139.9" cy="97.1" r="2.64698" style="color:black; overflow:visible; fill:black; stroke:black; stroke-width:0.53;"/>
+<circle cx="139.9" cy="112.3" r="2.64698" style="color:black; overflow:visible; fill:black; stroke:black; stroke-width:0.53;"/>
+<circle cx="155.1" cy="97.1" r="2.64698" style="color:black; overflow:visible; fill:black; stroke:black; stroke-width:0.53;"/>
+<circle cx="155.1" cy="112.3" r="2.64698" style="color:black; overflow:visible; fill:black; stroke:black; stroke-width:0.53;"/>
+<rect x="98.3" y="88.9" rx="10.6" ry="10.6" width="31.8" height="31.8" style="color:black; overflow:visible; fill:#fbf0ff; stroke:black; stroke-width:0.53;"/>
+<circle cx="106.4" cy="97.1" r="2.64698" style="color:black; overflow:visible; fill:black; stroke:black; stroke-width:0.53;"/>
+<circle cx="121.7" cy="112.3" r="2.64698" style="color:black; overflow:visible; fill:black; stroke:black; stroke-width:0.53;"/>
+<circle cx="114.1" cy="104.7" r="2.64698" style="color:black; overflow:visible; fill:black; stroke:black; stroke-width:0.53;"/>
+<rect x="64.8" y="88.9" rx="10.6" ry="10.6" width="31.8" height="31.8" style="color:black; overflow:visible; fill:#fbf0ff; stroke:black; stroke-width:0.53;"/>
+<circle cx="73" cy="97.1" r="2.64698" style="color:black; overflow:visible; fill:black; stroke:black; stroke-width:0.53;"/>
+<circle cx="88.2" cy="112.3" r="2.64698" style="color:black; overflow:visible; fill:black; stroke:black; stroke-width:0.53;"/>
+<rect x="31.4" y="88.9" rx="10.6" ry="10.6" width="31.8" height="31.8" style="color:black; overflow:visible; fill:#fbf0ff; stroke:black; stroke-width:0.53;"/>
+<circle cx="47.1" cy="104.7" r="2.64698" style="color:black; overflow:visible; fill:black; stroke:black; stroke-width:0.53;"/>
+<text x="72.5" y="39.9" style="font-family:Georgia; text-align:center; text-anchor:middle; font-size:21.3px; font-style:italic; color:black; overflow:visible; fill:#2d2d2d; stroke-width:0.5px;">Event A</text>
+</svg>
