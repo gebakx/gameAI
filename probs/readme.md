@@ -192,6 +192,8 @@ $$z=\frac{x-\mu}{\sigma}$$
 [source](https://www.mathsisfun.com/data/standard-normal-distribution.html)
 ]
 
+- [Standard Normal Distribution Table](https://www.mathsisfun.com/data/standard-normal-distribution-table.html)
+
 - [Practical example](https://www.mathsisfun.com/data/standard-normal-distribution.html)
 
 ---
@@ -199,3 +201,9 @@ $$z=\frac{x-\mu}{\sigma}$$
 # References
 
 - MathIsFun.com. [Using and Handling Data](https://www.mathsisfun.com/data/index.html). Math is Fun, 2019.
+<br><br><br>
+
+## Probability Density Function
+
+$$f(x)=\frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}$$
+
