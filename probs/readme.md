@@ -2,7 +2,7 @@ class: center, middle
 
 ## Artificial Intelligence
 
-# Probabilities & Statistics
+# Probabilities
 
 <br>
 

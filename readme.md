@@ -10,7 +10,7 @@
 
 * [Decision Making](https://gebakx.github.io/dm-games/)
 
-* [Probability](probs/index.html) 
+* [Probabilities](probs/index.html) 
 
 * [Machine Learning](https://gebakx.github.io/ml-games/)
 
